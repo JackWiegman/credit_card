@@ -11,7 +11,7 @@ def count_digits(number):
 		else:
 			return digits
 
-def check_valid_number(credit_number):
+def sum_credit_number(credit_number):
 	digits = count_digits(credit_number)
 	credit_card = []
 	for i in range(16):
@@ -40,13 +40,14 @@ def check_valid_number(credit_number):
 			final_sum_numbers.append(i)
 
 	sum_num = sum(final_sum_numbers)
+	return sum_num
 
+def check_valid_number(credit_number):
+	sum_num = sum_credit_number(credit_number)
 	if sum_num % 10 == 0:
 		return True
 	else:
 		return False
-
-def turn_num_into_list(number)
 
 def sum(numbers):
 	total = 0
@@ -62,11 +63,22 @@ def generate_card_number(num):
 	return num
 
 def generate_card_number_better(rand_15_digit_number):
-	rand_15_digit_number *= 10
-	sum_num = 0
+	num = rand_15_digit_number * 10
+	added_nums = sum_credit_number(num)
+	last_digit_pre = added_nums % 10
+	last_digit = 10 - last_digit_pre
+	valid_num = num + last_digit
+	return valid_num
 
-	
+def sum_digits(number):
+	n = 0
+	while n:
+		n += number % 10
+		number //= 10
+	return n
 
-print check_valid_number(4024007199143941)
+
+print sum_digits(126)
+print check_valid_number(9444386154094054)
 print generate_card_number(randint(1000000000000000, 9999999999999999))
 print generate_card_number_better(randint(100000000000000, 999999999999999))
